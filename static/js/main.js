@@ -1,0 +1,31 @@
+window.onload = initAll;
+
+function initAll() {
+  var saveBookButton = document.getElementById("save_book");
+  saveBookButton.onclick = saveButton;
+}
+
+function saveButton() {
+  var book_name = document.getElementById("book_name").value;
+  var book_price = document.getElementById("book_price").value;
+  var book_page = document.getElementById("book_page").value;
+
+  var url =
+    book_add_url +
+    "?book_name=" +
+    book_name +
+    "&book_price=" +
+    book_price +
+    "&book_page=" +
+    book_page;
+
+  //   console.log(url);
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      alert(req.responseText);
+    }
+  };
+  req.open("GET", url, true);
+  req.send();
+}

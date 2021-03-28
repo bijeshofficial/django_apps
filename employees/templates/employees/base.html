@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,8 +27,8 @@
     <div class="container">
       <div class="col-md-10 offset-md-1 mt-5">
         <div class="jumbotron">
-          <h1 class="display-4 text-center">Employee Registration</h1>
-          <p class="lead text-center">Python crud</p>
+          <h1 class="display-4 text-center">Python Tutorial</h1>
+          <p class="lead text-center">Python Basics</p>
           <hr class="my-4" />
           {% block content %} {% endblock content %}
         </div>
@@ -51,5 +52,9 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script>
+      var book_add_url = "{% url 'book_add' %}";
+    </script>
+    <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

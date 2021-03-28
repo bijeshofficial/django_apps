@@ -20,4 +20,5 @@ from django.urls.conf import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('employees/', include('employees.urls')),
+    path('ajax_1/', include('ajax_1.urls')),
 ]
