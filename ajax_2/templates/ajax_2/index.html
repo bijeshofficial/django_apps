@@ -1,0 +1,57 @@
+{% extends 'employees/base.html' %} {% load static %}
+<!-- Crispy Forms Tag-->
+{% load crispy_forms_tags%}
+
+<!-- Start of Block -->
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-4">
+    <h4 class="text-center alert alert-info">Add Student</h4>
+    <form action="" method="POST">
+      {% csrf_token %} {{form|crispy}}
+      <input class="btn btn-info" type="submit" id="btnSave" value="Save" />
+    </form>
+  </div>
+  <div class="col-sm-8">
+    <h4 class="text-center alert alert-info">Student List</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Password</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          {% for student in students %}
+          <th scope="row">{{student.id}}</th>
+          <td>{{student.name}}</td>
+          <td>{{student.email|truncatechars:10}}</td>
+          <td>{{student.password|truncatechars:2}}</td>
+          <td>
+            <a
+              class="btn btn-sm btn-outline-warning"
+              type="button"
+              data="{{student.id}}"
+              ><i class="far fa-edit fa-lg"></i
+            ></a>
+            <a
+              class="btn btn-sm btn-outline-danger"
+              type="button"
+              data="{{student.id}}"
+              ><i class="fas fa-trash fa-lg"></i
+            ></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% block script %}
+<script src="{% static 'js/ajax_2.js' %}"></script>
+{% endblock script %} {% endblock content %}

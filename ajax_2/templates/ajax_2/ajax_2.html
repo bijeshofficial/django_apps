@@ -1,0 +1,29 @@
+<script>
+  $("#btnSave").click(function (e) {
+    e.preventDefault();
+    var name = $("#nameId").val();
+    var email = $("#emailId").val();
+    var password = $("#passwordId").val();
+    var csrf = $("input[name=csrfmiddlewaretoken]").val();
+    console.log(csrf);
+    if (name == "" || email == "" || password == "") {
+      alert("Fields must not be empty");
+    } else {
+      mydata = {
+        name: name,
+        email: email,
+        password: password,
+        csrfmiddlewaretoken: csrf,
+      };
+      $.ajax({
+        url: "{% url 'ajax_2_save' %}",
+        method: "POST",
+        data: mydata,
+        success: function (json) {
+          console.log(json);
+          $("form")[0].reset();
+        },
+      });
+    }
+  });
+</script>

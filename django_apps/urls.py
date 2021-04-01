@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('employees/', include('employees.urls')),
     path('ajax_1/', include('ajax_1.urls')),
+    path('ajax_2/', include('ajax_2.urls')),
 ]

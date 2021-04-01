@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'ajax_1',
+    'ajax_2',
     'employees',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -28,7 +28,7 @@
       <div class="col-md-10 offset-md-1 mt-5">
         <div class="jumbotron">
           <h1 class="display-4 text-center">Python Tutorial</h1>
-          <p class="lead text-center">Python Basics</p>
+          <p class="lead text-center">Django Basics</p>
           <hr class="my-4" />
           {% block content %} {% endblock content %}
         </div>
@@ -38,8 +38,8 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
       crossorigin="anonymous"
     ></script>
     <script
@@ -55,6 +55,9 @@
     <script>
       var book_add_url = "{% url 'book_add' %}";
     </script>
-    <script src="{% static 'js/main.js' %}"></script>
+    <!-- Ajax 1-->
+    <!--{% include 'ajax_1/ajax_1.html' %}-->
+    <!-- Ajax 2 -->
+    {% include 'ajax_2/ajax_2.html' %}
   </body>
 </html>
