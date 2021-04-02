@@ -29,3 +29,12 @@ def save_data(request):
             students_list = list(students)
             return JsonResponse({'status': 'Success', 'students_list': students_list})
         return JsonResponse({'status': 'Error'})
+
+
+def delete_data(request):
+    if request.method == "POST":
+        id = request.POST.get('sid')
+        student = Student.objects.get(pk=id)
+        student.delete()
+        return JsonResponse({'status': 1})
+    return JsonResponse({'status': 0})

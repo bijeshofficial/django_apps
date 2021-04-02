@@ -1,11 +1,12 @@
 <script>
+  //Insert Data and View Data
   $("#btnSave").click(function (e) {
     e.preventDefault();
+    output = "";
     var name = $("#nameId").val();
     var email = $("#emailId").val();
     var password = $("#passwordId").val();
     var csrf = $("input[name=csrfmiddlewaretoken]").val();
-    console.log(csrf);
     if (name == "" || email == "" || password == "") {
       alert("Fields must not be empty");
     } else {
@@ -20,10 +21,48 @@
         method: "POST",
         data: mydata,
         success: function (json) {
-          console.log(json);
+          response = json.students_list;
+          for (i = 0; i < response.length; i++) {
+            output +=
+              "<tr><th scope='row'>" +
+              response[i].id +
+              "</th><td>" +
+              response[i].name +
+              "</td><td>" +
+              response[i].email +
+              "</td><td>" +
+              response[i].password +
+              "</td><td><a class='btn btn-sm btn-outline-warning btn-edit' type='button' data=" +
+              response[i].id +
+              "><i class='far fa-edit fa-lg'></i></a> <a class='btn btn-sm btn-outline-danger btn-del' type='button' data= " +
+              response[i].id +
+              "><i class='fas fa-trash fa-lg'></i></a></td></tr>";
+          }
+          $("#tBody").html(output);
           $("form")[0].reset();
         },
       });
     }
+  });
+
+  //Delete Data
+  $("#tBody").on("click", ".btn-del", function () {
+    let id = $(this).attr("data");
+    var csrf = $("input[name=csrfmiddlewaretoken]").val();
+    mydata = { sid: id, csrfmiddlewaretoken: csrf };
+    mythis = this;
+    $.ajax({
+      url: "{% url 'ajax_2_delete' %}",
+      method: "POST",
+      data: mydata,
+      success: function (data) {
+        if (data.status == 1) {
+          $(mythis).closest("tr").fadeOut();
+        }
+        if (data.status == 0) {
+          alert("Unable to delete");
+        }
+      },
+    });
   });
 </script>

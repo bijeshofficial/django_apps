@@ -25,22 +25,22 @@
           <th scope="col">Actions</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tBody">
+        {% for student in students %}
         <tr>
-          {% for student in students %}
           <th scope="row">{{student.id}}</th>
           <td>{{student.name}}</td>
-          <td>{{student.email|truncatechars:10}}</td>
-          <td>{{student.password|truncatechars:2}}</td>
+          <td>{{student.email}}</td>
+          <td>{{student.password}}</td>
           <td>
             <a
-              class="btn btn-sm btn-outline-warning"
+              class="btn btn-sm btn-outline-warning btn-edit"
               type="button"
               data="{{student.id}}"
               ><i class="far fa-edit fa-lg"></i
             ></a>
             <a
-              class="btn btn-sm btn-outline-danger"
+              class="btn btn-sm btn-outline-danger btn-del"
               type="button"
               data="{{student.id}}"
               ><i class="fas fa-trash fa-lg"></i
