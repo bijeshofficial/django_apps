@@ -3,6 +3,7 @@
   $("#btnSave").click(function (e) {
     e.preventDefault();
     output = "";
+    var sid = $("#stdId").val();
     var name = $("#nameId").val();
     var email = $("#emailId").val();
     var password = $("#passwordId").val();
@@ -11,6 +12,7 @@
       alert("Fields must not be empty");
     } else {
       mydata = {
+        sid: sid,
         name: name,
         email: email,
         password: password,
@@ -39,6 +41,7 @@
               "><i class='fas fa-trash fa-lg'></i></a></td></tr>";
           }
           $("#tBody").html(output);
+          $("#stdID").val();
           $("form")[0].reset();
         },
       });
@@ -62,6 +65,27 @@
         if (data.status == 0) {
           alert("Unable to delete");
         }
+      },
+    });
+  });
+
+  //Edit Data
+  $("#tBody").on("click", ".btn-edit", function () {
+    let id = $(this).attr("data");
+    var csrf = $("input[name=csrfmiddlewaretoken]").val();
+    $.ajax({
+      url: "{% url 'ajax_2_update' %}",
+      method: "POST",
+      data: {
+        sid: id,
+        csrfmiddlewaretoken: csrf,
+      },
+      dataType: "json",
+      success: function (data) {
+        $("#stdId").val(data.id);
+        $("#nameId").val(data.name);
+        $("#emailId").val(data.email);
+        $("#passwordId").val(data.password);
       },
     });
   });

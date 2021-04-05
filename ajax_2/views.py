@@ -20,10 +20,16 @@ def save_data(request):
     if request.method == "POST":
         form = StudentRegistrationForm(request.POST)
         if form.is_valid():
+            sid = request.POST.get('sid')
             name = request.POST['name']
             email = request.POST['email']
             password = request.POST['password']
-            student = Student(name=name, email=email, password=password)
+
+            if sid == "":
+                student = Student(name=name, email=email, password=password)
+            else:
+                student = Student(id=sid, name=name,
+                                  email=email, password=password)
             student.save()
             students = Student.objects.values()
             students_list = list(students)
@@ -38,3 +44,12 @@ def delete_data(request):
         student.delete()
         return JsonResponse({'status': 1})
     return JsonResponse({'status': 0})
+
+
+def update_data(request):
+    if request.method == "POST":
+        id = request.POST.get('sid')
+        student = Student.objects.get(pk=id)
+        student_data = {"id": student.id, "name": student.name,
+                        "email": student.email, "password": student.password}
+        return JsonResponse(student_data)

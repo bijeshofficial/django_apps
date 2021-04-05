@@ -9,7 +9,9 @@
   <div class="col-sm-4">
     <h4 class="text-center alert alert-info">Add Student</h4>
     <form action="" method="POST">
-      {% csrf_token %} {{form|crispy}}
+      {% csrf_token %}
+      <input type="hidden" name="stdId" id="stdId" />
+      {{form|crispy}}
       <input class="btn btn-info" type="submit" id="btnSave" value="Save" />
     </form>
   </div>
@@ -52,6 +54,4 @@
     </table>
   </div>
 </div>
-{% block script %}
-<script src="{% static 'js/ajax_2.js' %}"></script>
-{% endblock script %} {% endblock content %}
+{% endblock content %}
