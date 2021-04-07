@@ -1,0 +1,70 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    <!-- Div for musician -->
+    <div class="col-sm-6 border-right">
+      <div class="d-flex justify-content-between">
+        <h4 class="mx-auto">Musician</h4>
+        <a class="btn btn-info" href="{% url 'create_musician' %}"
+          >Add Mucician</a
+        >
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Instrument</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for musician in musicians %}
+          <tr>
+            <td>{{musician.first_name}}</td>
+            <td>{{musician.last_name}}</td>
+            <td>{{musician.instrument}}</td>
+            <td>
+              <a href="{% url 'update_musician' musician.id %}" class="pr-2"
+                >Edit</a
+              >
+              <a href="{% url 'delete_musician' musician.id %}">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <!-- Div for album -->
+    <div class="col-sm-6">
+      <div class="d-flex justify-content-between">
+        <h4 class="mx-auto">Album</h4>
+        <a class="btn btn-info" href="{% url 'create_album' %}">Add Album</a>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Artist Name</th>
+            <th scope="col">Album Name</th>
+            <th scope="col">Release Date</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for album in albums %}
+          <tr>
+            <td>{{ album.artist.first_name }} {{album.artist.last_name}}</td>
+            <td>{{album.name}}</td>
+            <td>{{album.release_date}}</td>
+            <td>
+              <a href="{% url 'update_album' album.id %}" class="pr-2">Edit</a>
+              <a href="{% url 'delete_album' album.id %}">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}
