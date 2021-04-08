@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'employees',
     'function_crud',
     'rest_api',
+    'khalti',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
