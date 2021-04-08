@@ -24,5 +24,6 @@ urlpatterns = [
     path('ajax_1/', include('ajax_1.urls')),
     path('ajax_2/', include('ajax_2.urls')),
     path('function_crud/', include('function_crud.urls')),
-    path('', TemplateView.as_view(template_name='index.html'), name='index')
+    path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('snippets/', include('rest_api.urls'))
 ]
